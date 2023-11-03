@@ -1,24 +1,17 @@
 class Solution {
     public List<String> buildArray(int[] target, int n) {
         List<String> res=new ArrayList<>();
-        Stack<Integer> s=new Stack<>();
         int stackN = 1;
 
         for ( int num : target ){
-            if(num == stackN){
+            while (stackN < num) {
                 res.add("Push");
-                stackN ++; 
+                res.add("Pop");
+                stackN++;
             }
-            else{
-                int diff = num - stackN;
-                for(int i=0;i < diff ; i++)
-                {
-                    res.add("Push");
-                    res.add("Pop");
-                }
-                res.add("Push");
-                stackN +=diff+1;
-            }
+
+        res.add("Push");   
+        stackN ++; 
         }
         return res; 
     }
